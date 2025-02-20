@@ -1,8 +1,8 @@
 // Initialize Scores
 
 let humanScore = 0;
-let ComputerScore = 0;
-
+let computerScore = 0;
+let Draws = 0;
 // Player gives an input
 
 function getHumanChoice() {
@@ -39,19 +39,45 @@ function playRound(humanChoice, computerChoice) {
 
   if (humanChoice === computerChoice) {
     console.log("it is a Draw!");
+    Draws++;
   } else if (
     (humanChoice === "rock" && computerChoice === "scissors") ||
     (humanChoice === "scissors" && computerChoice === "paper") ||
     (humanChoice === "paper" && computerChoice === "rock")
   ) {
     console.log("You Won! " + humanChoice + " beats " + computerChoice);
+    humanScore++;
   } else {
     console.log("You Lost! " + computerChoice + " beats " + humanChoice);
+    computerScore++;
   }
 }
 
-// compare Player input with Computer output
+function showFinalScore() {
+  console.log("Player Score: " + humanScore);
+  console.log("Computer Score: " + computerScore);
+  console.log("Draws: " + Draws);
+  if (humanScore === computerScore) {
+    console.log("Winner: Its a Draw");
+  } else if (humanScore > computerScore) {
+    console.log("Player Won!");
+  } else {
+    console.log("Computer Won!");
+  }
+}
 
-// Announce Round Winner
+function resetScore() {
+  humanScore = 0;
+  computerScore = 0;
+  Draws = 0;
+}
 
-// Announce Game winner
+// Play Game
+
+function playGame() {
+  for (let Round = 1; Round <= 5; Round++) {
+    playRound();
+  }
+  showFinalScore();
+  resetScore();
+}
