@@ -95,10 +95,11 @@ rockBtn.addEventListener("click", clickButton);
 paperBtn.addEventListener("click", clickButton);
 scissorsBtn.addEventListener("click", clickButton);
 
+const gameOver = document.createElement("p");
 function showFinalScore() {
-  const gameOver = document.createElement("p");
   displayContainer.appendChild(gameOver);
   displayContainer.removeChild(roundResult);
+
   gameOver.style.textAlign = "left";
   gameOver.innerText = "******GAME OVER******\n\n";
   gameOver.innerText += `Player Score: ${humanScore}\n`;
@@ -123,7 +124,15 @@ function resetScore() {
   humanScore = 0;
   computerScore = 0;
   Draws = 0;
-  round = -1;
+  round = 0;
+  document.querySelector("#round-score").textContent = 0;
+  document.querySelector("#draws-score").textContent = 0;
+  document.querySelector("#player-score").textContent = 0;
+  document.querySelector("#computer-score").textContent = 0;
+  displayContainer.appendChild(roundResult);
+  displayContainer.removeChild(gameOver);
+
+  roundResult.textContent = "Press A Button To START";
 }
 
 // Play Game
